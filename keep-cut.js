@@ -51,28 +51,12 @@ const keepLast = (str) => {
 }
 
 const keepFirstLast = (str) => {
-	if (str.length < 2) {
-		return str;
-	}
+    if (str.length <= 4) {
+        return str;
+    }
 
-	let first = keepFirst(str);
-	let last = keepLast(str);
+    let first = keepFirst(str);
+    let last = keepLast(str);
 
-	let res = "";
-
-	if (str.length == 2) {
-		res = first;
-		return res;
-	}
-
-	if (str.length % 2 == 0) {
-		res = first + last;
-	} else {
-		let one = str[str.length-1];
-		res = first + one;
-	}
-	
-	return res;
+    return first + last;
 }
-
-console.log(keepFirstLast('afedd'))
