@@ -1,0 +1,3 @@
+const firstDayWeek = (num, str) => {
+
+}
