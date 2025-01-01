@@ -1,13 +1,19 @@
-import { colors } from './fifty-shades-of-cold.data.js'
-
 export const compose = () => {
     document.addEventListener('keydown', (event) => {
         const div = document.createElement("div")
         const randomColor = getRandomColor();
         div.setAttribute("class", "note")
         div.style.backgroundColor = randomColor;
-        div.textContent = (`${event.key}`)
-        document.body.append(div)
+        
+        if (event.code === "Backspace") {
+            const lastNode = document.querySelector('div.note:last-child')
+            lastNode.remove()
+        } else if (event.code === "Escape") {
+            document.body.innerHTML = ""
+        } else {
+            div.textContent = (`${event.key}`)
+            document.body.append(div)
+        }
     })
 }
 
