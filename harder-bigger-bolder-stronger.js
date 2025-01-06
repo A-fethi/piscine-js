@@ -6,7 +6,7 @@ export const generateLetters = () => {
 
     for (let i = 0; i < 120; i++) {
         const randomInd = Math.floor(Math.random() * alphabet.length)
-        res = alphabet[randomInd]
+        res = alphabet.charAt(randomInd)
         if (i < 120 / 3) {
             fontWeight = 300;
         } else if (i < (2 * 120) / 3) {
