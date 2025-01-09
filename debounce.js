@@ -1,24 +1,24 @@
-const debounce = (func, num) => {
-    let time;
+const debounce = (func, delay) => {
+    let wait
     return (...args) => {
-        clearTimeout(time)
-        time = setTimeout(() => {
+        clearTimeout(wait)
+        wait = setTimeout(() => {
             func(...args)
-        }, num)
+        }, delay)
     }
 }
 
-const opDebounce = (func, num, option = {}) => {
-    let time;
-    let isLeading = false
+const opDebounce = (func, delay, obj = {}) => {
+    // let wait
+    let chekcer = true
+
     return (...args) => {
-        if (option.leading && !isLeading) {
+        if (obj.leading && chekcer) {
             func(...args)
-            isLeading = true
+            chekcer = false
         }
-        clearTimeout(time)
-        time = setTimeout(() => {
-            func(...args)
-        }, num)
+        setTimeout(() => {
+            chekcer = true
+        }, delay)
     }
 }

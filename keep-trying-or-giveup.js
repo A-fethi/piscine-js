@@ -1,27 +1,21 @@
-function retry(count, callback) {
-    return async function(...args) {
-        let attempts = 0;
-        while (attempts <= count) {
-            try {
-                return await callback(...args);
-            } catch (error) {
-                attempts++;
-                if (attempts > count) {
-                    throw new Error('Maximum retry attempts exceeded');
+const retry = (count, callback) => {
+    let errorCount = 0
+    return (...args) => {
+        return callback(...args)
+            .then((data) => {
+                return data
+            })
+            .catch((error) => {
+                while (errorCount > count) {
+                    throw new Error("error")
                 }
-            }
-        }
-    };
+            })
+    }
 }
 
-function timeout(delay, callback) {
-    return async function(...args) {
-        const timeoutPromise = new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('timeout')), delay)
-        );
-        return Promise.race([
-            callback(...args),
-            timeoutPromise
-        ]);
-    };
-}
+// const timeout = (delay, callback) => {
+//     return (...args) => {
+//         return callback(...args)
+//     }
+
+

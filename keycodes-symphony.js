@@ -1,10 +1,8 @@
 export const compose = () => {
     document.addEventListener('keydown', (event) => {
         const div = document.createElement("div")
-        const randomColor = getRandomColor();
         div.setAttribute("class", "note")
-        div.style.backgroundColor = randomColor;
-        
+        div.style.backgroundColor = getColor()
         if (event.code === "Backspace") {
             const lastNode = document.querySelector('div.note:last-child')
             lastNode.remove()
@@ -17,11 +15,11 @@ export const compose = () => {
     })
 }
 
-const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
+const getColor = () => {
+    let value = "#"
+    const hex = "0123456789ABCDEF"
     for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+        value += hex[Math.floor(Math.random(i) * hex.length)]
     }
-    return color;
+    return value
 }
